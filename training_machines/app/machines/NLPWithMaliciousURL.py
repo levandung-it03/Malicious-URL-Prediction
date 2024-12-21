@@ -256,7 +256,9 @@ def build_random_forest_with_malicious_vectorizers():
         "sub_dir_quantity": 1.0,  # Số lượng thư mục con
         "path_vars_quantity": 1.0,  # Số lượng biến trong URL
         # Targets
-        "benign": 2.19,  # 133659 (2.669)
+        # "benign": 2.19,  # 133659 (2.669)
+        # "malicious": 1.599  # 223134 (1.599)
+        "benign": 2.309,  # 133659 (2.669)
         "malicious": 1.599  # 223134 (1.599)
     }
 
@@ -316,9 +318,9 @@ def predict_url(url: str):
     print(y_pred[0])
 
 
-calculate_performance()
-
 # build_random_forest_with_malicious_vectorizers()
+# calculate_performance()
+#
 # print("\n 2011site-seguro-cielo-fidelidade.com/cadastro.php: benign - ", end="")
 # predict_url("2011site-seguro-cielo-fidelidade.com/cadastro.php")  # benign
 # print("\n https://www.facebook.com: benign - ", end="")
@@ -338,6 +340,7 @@ calculate_performance()
 # predict_url("safety.microsoft.com.akwyhch.zi1tjdmyw2zkqk8hpmbvkq.bid")  # malware
 # print("\n http://21twentyone.net/sejeal.jpg: defacement - ", end="")
 # predict_url("http://21twentyone.net/sejeal.jpg")  # defacement
+predict_url("http://acp-atlanta.org/zh.html")
 
 # Using this when you want to update TLDs part of domain on Wikipedia.
 # extract_TLD_from_wiki()
