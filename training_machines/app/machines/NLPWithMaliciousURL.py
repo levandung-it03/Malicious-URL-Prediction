@@ -22,7 +22,6 @@ malicious_kaggle_file_path = os.path.join(BASE_DIR, "app/dataset/csv/malicious_p
 malicious_tokenizers_file_path = os.path.join(BASE_DIR, "app/dataset/csv/malicious_tokenizers.csv")
 rand_forest_machine_model_file_path = os.path.join(BASE_DIR, "app/machine_models/malicious_random_forest_classifier.pkl")
 vectorizer_machine_model_file_path = os.path.join(BASE_DIR, "app/machine_models/count_vectorizer.pkl")
-BENIGN_WEIGHT = 0
 subdomains = ["www"]
 tlds = []
 text_labels = ["protocols", "full_domain", "subdomain", "root_domain", "tld", "sub_directory", "path_variables"]
@@ -230,7 +229,6 @@ def extract_all_malicious_url_dataset_to_tokens():
 
 
 def build_random_forest_with_malicious_vectorizers():
-    global BENIGN_WEIGHT
     tokenizers_frame = pd.read_csv(malicious_tokenizers_file_path)
 
     # Separating data
@@ -258,7 +256,7 @@ def build_random_forest_with_malicious_vectorizers():
         # Targets
         # "benign": 2.19,  # 133659 (2.669)
         # "malicious": 1.599  # 223134 (1.599)
-        "benign": 2.309,  # 133659 (2.669)
+        "benign": 2.335,  # 133659 (2.669)
         "malicious": 1.599  # 223134 (1.599)
     }
 
@@ -320,7 +318,7 @@ def predict_url(url: str):
 
 # build_random_forest_with_malicious_vectorizers()
 # calculate_performance()
-#
+
 # print("\n 2011site-seguro-cielo-fidelidade.com/cadastro.php: benign - ", end="")
 # predict_url("2011site-seguro-cielo-fidelidade.com/cadastro.php")  # benign
 # print("\n https://www.facebook.com: benign - ", end="")
@@ -340,7 +338,7 @@ def predict_url(url: str):
 # predict_url("safety.microsoft.com.akwyhch.zi1tjdmyw2zkqk8hpmbvkq.bid")  # malware
 # print("\n http://21twentyone.net/sejeal.jpg: defacement - ", end="")
 # predict_url("http://21twentyone.net/sejeal.jpg")  # defacement
-predict_url("http://acp-atlanta.org/zh.html")
+# predict_url("2018.zone")
 
 # Using this when you want to update TLDs part of domain on Wikipedia.
 # extract_TLD_from_wiki()
